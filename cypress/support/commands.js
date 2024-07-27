@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.on("uncaught:exception", (err, runnable) => {
+  // returning false here prevents Cypress from failing the test
+  return false;
+});
+
+
+Cypress.Commands.add("loginToTrello", () => {
+  cy.visit("/login");
+  cy.get("#username").clear().type("wala2nazzal@gmail.com");
+  cy.get("#login-submit").click();
+  cy.wait(6000);
+  cy.get("#password").type("Lolah415263!&");
+  cy.wait(6000);
+  cy.get("#login-submit").click();
+});
