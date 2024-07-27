@@ -5,7 +5,9 @@ class CreateNewCardAssertions {
         return this;
     }
     checkCardIsContain(cardName){
-        cy.findByTestId("trello-card").should("contain",cardName)
+        //cy.pause()
+        cy.wait(4000)
+        cy.get("[data-testid=trello-card]").should("contain",cardName)
         return this;
     }
 }
