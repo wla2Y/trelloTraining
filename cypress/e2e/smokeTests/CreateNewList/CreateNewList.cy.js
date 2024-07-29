@@ -19,6 +19,7 @@ const listName = "CypressTitle";
 before(() => {
   cy.loginToTrello();
   sharedDataUtil.createNewBoard(boardName).as("boardResponse");
+  
 });
 
 
@@ -28,6 +29,7 @@ Given("The user navigate to board", () => {
     cy.get("@boardResponse").then((data) => {
     cy.log(data);
     sharedAction.openBoard(data.body.url);
+    
     });
 
 });
