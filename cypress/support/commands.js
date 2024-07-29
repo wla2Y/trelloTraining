@@ -35,7 +35,7 @@ Cypress.Commands.add("loginToTrello", () => {
   cy.get("#username").clear().type("wala2nazzal@gmail.com");
   cy.get("#login-submit").click();
   cy.wait(6000);
-  cy.get("#password").type("Lolah415263!&");
+  cy.get("#password").type("Trello1234!$");
   cy.wait(6000);
   cy.get("#login-submit").click();
 });
