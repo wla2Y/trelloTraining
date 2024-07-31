@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { APIKey, APIToken } from "../../support/constants.cy";
 
 class ShardActions {
 
