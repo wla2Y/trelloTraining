@@ -5,7 +5,7 @@ class MoveTemplateToAnyListAassertion {
     checkTempleteIsMoved(){
      
         cy.wait(4000)
-        cy.get(".window-header-inline-content").first().should("contain","in list Done")
+        cy.get(".js-open-move-from-header").first().should("contain","Doing")
         return this;
     }
 

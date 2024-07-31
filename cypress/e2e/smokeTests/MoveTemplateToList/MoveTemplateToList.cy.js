@@ -29,6 +29,7 @@ before(() => {
         cy.log(dataList.body[0].id);
         console.log(dataList.body[0].id);
         sharedDataUtil.createNewCard( dataList.body[0].id , cardName , isTemplate );
+        cy.wait(5000)
       });
     });
 });
@@ -47,10 +48,10 @@ Given("Clicks on Templete filed", () => {
 
 
 When("Click on Move option", () => {
-    moveTempleteAction.ClicksOnMOveAction()
+   moveTempleteAction.ClicksOnMOveAction()
 });
 When("the user choose the List that want to move to", () => {
-    moveTempleteAction.fillMoveCardFiled()
+   moveTempleteAction.fillMoveCardField()
 });
 When("click on Move Button", () => {
     moveTempleteAction.clickOnMoveButton()
@@ -58,6 +59,7 @@ When("click on Move Button", () => {
 Then("the templete card will be moved successfully", () => {
     moveTempleteAssertion.checkTempleteIsMoved()
 });
+
 
 after(() => {
   cy.wait(6000);
