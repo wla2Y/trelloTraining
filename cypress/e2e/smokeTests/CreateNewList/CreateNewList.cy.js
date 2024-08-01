@@ -14,7 +14,7 @@ const listAssertions = new CreateNewListAssertions();
 
 
 const boardName = "CypressBoard";
-const listName = "CypressTitle";
+const listName = "ListTitle";
 
 before(() => {
   cy.loginToTrello();
@@ -52,7 +52,7 @@ When("Clicks on Add list button", () => {
 
 Then("A new list will be created", () => {
     listAssertions.checkListIsContain(listName)
-
+    cy.screenshot() 
 });
 
 
@@ -63,3 +63,4 @@ after(() => {
       })
 
 });
+ 

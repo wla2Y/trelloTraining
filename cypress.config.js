@@ -7,8 +7,11 @@ module.exports = defineConfig({
    baseUrl:"https://trello.com",
    chromeWebSecurity: false,
    video: true,
+   screenshotOnRunFailure: true,
+   screenshotsFolder: "TheScreenshots",
    setupNodeEvents(on, config) {
      on("file:preprocessor", cucumber());
    },
+
  },
 });
