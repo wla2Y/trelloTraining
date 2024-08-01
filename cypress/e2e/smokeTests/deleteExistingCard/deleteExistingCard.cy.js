@@ -1,28 +1,42 @@
 import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
 import sharedDataUtils from "../../../pageObjects/shared/dataUtils.cy";
+import ShardActions from "../../../pageObjects/shared/actions.cy";
 import DeltetExistCardActions from "../../../pageObjects/deleteExistingCard/actions.cy.js";
 import DeltetExistCardAssertions from "../../../pageObjects/deleteExistingCard/assertions.cy.js";
 
 const sharedDataUtil = new sharedDataUtils();
-//const sharedAction = new ShardActions();
+const sharedAction = new ShardActions();
 const deletecardAction = new DeltetExistCardActions();
 const deletecardassertion = new DeltetExistCardAssertions();
 
 const boardName = "CypressBoard";
 const cardName = "CypressCard";
+const isTemplate = "false";
 
 before(() => {
   cy.loginToTrello();
-  sharedDataUtil.createNewBoard(boardName).as("boardResponse");
+  cy.wait(6000);
 
-
+  sharedDataUtil
+    .createNewBoard(boardName)
+    .as("boardResponse") 
+    .then((data) => {
+      cy.log(data);
+      sharedDataUtil.getListsOnBoard(data.body.id).then((dataList) => {
+       
+        cy.log(dataList.body[0].id);
+        console.log(dataList.body[0].id);
+        sharedDataUtil.createNewCard(dataList.body[0].id, cardName, isTemplate);
+        cy.wait(5000);
+      });
+    });
 });
 
 Given("The user navigate to board", () => {
   cy.wait(5000);
   cy.get("@boardResponse").then((data) => {
     cy.log(data);
-    deletecardAction.openBoardCard(data.body.url);
+    sharedAction.openBoard(data.body.url);
   });
 });
 

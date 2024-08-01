@@ -15,29 +15,45 @@ const updateTempleteAssertions = new UpdateTempleteNameAssertions();
 const boardName = "CypressBoard";
 const templeteName = "templete";
 const templeteUpdate = "tepmlete updeted"; 
+const isTemplate = "true";
+
+
 
 
 
 before(() => {
   cy.loginToTrello();
-  sharedDataUtil.createNewBoard(boardName).as("boardResponse");
+  cy.wait(6000);
+
+  sharedDataUtil.createNewBoard(boardName).as("boardResponse")
+    .then((data) => {
+      cy.log(data);
+      sharedDataUtil.getListsOnBoard(data.body.id).then((dataList) => {   
+        cy.log(dataList.body[0].id);
+        console.log(dataList.body[0].id);
+        sharedDataUtil.createNewCard( dataList.body[0].id , templeteName , isTemplate );
+        cy.wait(5000)
+      });
+    });
 });
+
 
 Given("The user navigate to board", () => {
   cy.wait(5000);
   cy.get("@boardResponse").then((data) => {
     cy.log(data);
     sharedAction.openBoard(data.body.url);
-    updateTempleteRegression.CreateNewTemplete(templeteName)
   });
 });
+
+
 
 Given("Clicks on templete card field", () => {
   updateTempleteAction.ClicksOnTempleteCardField()
 
 });
 
-When("Click on  title of the templete", () => {
+Given("Click on  title of the templete", () => {
   updateTempleteAction.ClicOnTitleOfTheTemplete()
 });
 

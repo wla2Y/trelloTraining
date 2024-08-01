@@ -31,7 +31,7 @@ Given("The user navigate to board", () => {
 
 });
 
-When("The user Click on list filed", () => { 
+Given("The user Click on list filed", () => { 
     updateListNameAction.ClickOnListFiled()
 
 

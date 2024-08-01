@@ -4,8 +4,6 @@
 class UpdateTepmpleteNameAction {
 
     ClicksOnTempleteCardField() {
-   
-     //cy.get(".amUfYqLTZOvGsn .jS9THwzyUow79A").click()
      cy.contains("span","This card is a template.").click({force: true})
      cy.wait(3000)
       return this;

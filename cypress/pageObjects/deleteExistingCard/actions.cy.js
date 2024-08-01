@@ -1,19 +1,7 @@
 /// <reference types="cypress" />
 
 class DeltetExistCardActions {
-  //createCard = ()=>{
-  //cy.get("#board [data-testid=list-add-card-button]").first().type("card to delete")
-  //cy.get("[type=submit]").click()
-  // }
-
-  openBoardCard(URL) {
-    cy.visit(URL);
-    cy.get("#board [data-testid=list-add-card-button]")
-      .first()
-      .type("CypressCard");
-    cy.get("[type=submit]").click();
-  }
-
+  
   ClicksOnCard() {
     cy.wait(3000);
     cy.get("[data-testid=trello-card]").click();
